@@ -1,0 +1,29 @@
+@use 'abstract/mixins' as *;
+@use 'abstract/functions' as *;
+@use 'variables' as *;
+
+@forward 'abstract/mixins';
+@forward 'abstract/functions';
+@forward 'variables';
+
+// COLOR THEME
+
+$palette: (
+    primary: hsl(230, 67%, 50%),
+    secondary: hsl(327, 67%, 50%),
+    accent: hsl(120, 67%, 50%),
+    neutral: hsl(233, 12%, 14%),
+    success: hsl(129, 64%, 39%),
+    warning: hsl(39, 71%, 51%),
+    danger: hsl(3, 67%, 50%),
+);
+
+@function color($color: 'primary', $tone: '500', $mode: 'light'){
+  $hsl: map-get($palette, $color);
+  @if $mode == 'light'{
+    @return hsl(hue($hsl), saturation($hsl), calc($tone / 10) * 1%);
+  } @else {
+    @return hsl(hue($hsl), saturation($hsl), calc((1000 - $tone) / 10) * 1%);
+  }
+  
+}
