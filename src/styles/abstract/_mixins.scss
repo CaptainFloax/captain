@@ -21,18 +21,14 @@
     z-index: 5;
 }
 
-@mixin button($col, $bg, $border) {
-    width: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    text-align: center;
-    padding: 5px;
-    color: $col;
-    background-color: $bg;
-    border: 1px solid $border;
-    border-radius: 10px;
-    cursor: pointer;
+@mixin colorBtn($foreground, $background){
+	color: $foreground;
+  	background: $background;
+  	border: 1px solid $background;
+  
+	&:hover{
+		background: darken($background, 10);
+	}
 }
+
 

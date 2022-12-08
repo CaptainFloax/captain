@@ -16,7 +16,7 @@ $palette: (
     success: hsl(129, 64%, 39%),
     warning: hsl(39, 71%, 51%),
     danger: hsl(3, 67%, 50%),
-);
+) !default;
 
 @function color($color: 'primary', $tone: '500', $mode: 'light'){
   $hsl: map-get($palette, $color);
@@ -25,5 +25,36 @@ $palette: (
   } @else {
     @return hsl(hue($hsl), saturation($hsl), calc((1000 - $tone) / 10) * 1%);
   }
+}
+
+.f-btn{
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 20px;
   
+  @each $key, $value in $palette{
+      &.level-1-#{$key}{
+          @include colorBtn(color($key, 950), color($key, 500));
+      }
+      &.level-2-#{$key}{
+          @include colorBtn(color($key, 300), color($key, 900));
+      }
+      &.level-3-#{$key}{
+          @include colorBtn(color($key, 500), transparent);
+      }
+  }
+  
+  &.small{
+      font-size: 16px;
+      padding: 8px 20px;
+  }
+  &.medium{
+      font-size: 18px;
+      padding: 10px 20px;
+  }
+  &.large{
+      font-size: 22px;
+      padding: 10px 20px;
+  }
 }
